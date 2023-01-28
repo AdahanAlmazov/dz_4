@@ -1,17 +1,32 @@
-import React from 'react'
-import TodoCard from "./TodoCard"
+import React from "react";
+import TodoCard from "./TodoCard";
 
-import classes from './components.module.css'
+import classes from "./components.module.css";
 
-const TodoList = ({ todoList, editTodo, deleteTodo, completedOnChange }) => {
-
+const TodoList = ({
+  search,
+  todoList,
+  editTodo,
+  deleteTodo,
+  completedOnChange,
+}) => {
   return (
     <div className={classes.flexList}>
-      {todoList.map((todo, i) => 
-        <TodoCard key={todo.date} todo={todo} editTodo={editTodo} deleteTodo={deleteTodo} completedOnChange={completedOnChange}/>
-      )}
+      {todoList.length > 0
+        ? todoList.map((todo, i) => (
+            <TodoCard
+              key={todo.date}
+              todo={todo}
+              editTodo={editTodo}
+              deleteTodo={deleteTodo}
+              completedOnChange={completedOnChange}
+            />
+          ))
+        : search === ""
+        ? "List empty!"
+        : "Not found!"}
     </div>
-  )
-}
+  );
+};
 
-export default TodoList
+export default TodoList;
